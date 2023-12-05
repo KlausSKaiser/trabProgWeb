@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Administração</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 35%;
+            alignment: center;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+         body {
+             background-color: azure;
+         }
+        @font-face {
+            font-family: Glitten, serif;
+            src: url("/public/fonts/glitten.otf");
+        }
+
+        h1 {
+            font-family: Glitten, serif;
+            text-align: center;
+            font-size: 70px;
+            color: midnightblue;
+        }
+
+        p {
+            font-family: "Times New Roman", sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-family: Glitten, serif;
+            align-content: center;
+            margin-left: 5%;
+            color: midnightblue;
+            font-size: 30px;
+        }
+
+        form {
+            font-family: "Times New Roman", sans-serif;
+            align-content: center;
+            margin-left: 5%;
+            color: black;
+            font-size: 15px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #020024;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family: "Times New Roman", sans-serif
+        }
+
+        li a:hover:not(.active) {
+            background-color: #020024;
+        }
+
+        .active {
+            background-color: #1173d9;
+        }
+        .button {
+            background-color: #1173d9; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .align2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="/">Página de Votos</a></li>
+    <li><a class="active" href="/admin">Administrativo</a></li>
+</ul>
+<h1>Página de Administração</h1>
+    <h2 style="text-align: center">Total de Votos:</h2>
+    <br>
+<div class="flex">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome do Concorrente</th>
+            <th>Total de Votos</th>
+        </tr>
+        <% candidates.forEach(function(candidate) { %>
+            <tr>
+                <td><%= candidate.id %></td>
+                <td><%= candidate.name %></td>
+                <td><%= voteCounts[candidate.id] || 0 %></td>
+            </tr>
+        <% }); %>
+    </table>
+</div>
+<br>
+<div class="flex">
+    <div>
+        <h2>Adicionar Concorrente:</h2>
+        <form method="POST" action="/admin/addCandidate">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+            <br>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <button type="submit" class="button button2">Adicionar</button>
+        </form>
+    </div>
+    <div>
+        <h2>Editar Concorrente:</h2>
+        <form method="POST" action="/admin/editCandidate">
+            <label for="candidateId">ID:</label>
+            <input type="text" id="candidateId" name="candidateId" required>
+            <br>
+            <label for="name">Novo Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <button type="submit" class="button button2">Editar</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Remover Concorrente:</h2>
+        <form method="POST" action="/admin/removeCandidate">
+            <label for="candidateId">ID:</label>
+            <input type="text" id="candidateId" name="candidateId" required>
+            <br>
+            <button type="submit" class="button button2">Remover</button>
+        </form>
+    </div>
+</div>
+<div class="flex">
+    <div>
+        <h2>Resetar Votos:</h2>
+        <form method="POST" action="/admin/resetVotes">
+            <button type="submit" class="button button2">Resetar Votos</button>
+        </form>
+
+    </div>
+    <div>
+        <h2>Resetar Candidatos:</h2>
+        <form method="POST" action="/admin/resetCandidates">
+            <button type="submit" class="button button2">Resetar Candidatos</button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div class="align2">
+    <a href="/logout"><button class="button button2">Logout</button></a>
+</div>
+</body>
+</html>

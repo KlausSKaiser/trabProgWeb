@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        @font-face {
+            font-family: Glitten, serif;
+            src: url("/public/fonts/glitten.otf");
+        }
+
+        h1 {
+            font-family: Glitten, serif;
+            text-align: center;
+            font-size: 70px;
+            color: midnightblue;
+        }
+
+        .align {
+            font-family: Glitten, serif;
+            align-content: center;
+            text-align: right;
+            margin-right: 40%;
+            color: midnightblue;
+            font-size: 30px;
+        }
+
+        .align2 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #020024;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family: "Times New Roman", sans-serif
+        }
+
+        li a:hover:not(.active) {
+            background-color: #020024;
+        }
+
+        .active {
+            background-color: #1173d9;
+        }
+        .button {
+            background-color: #1173d9; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="/">Página de Votos</a></li>
+    <li><a class="active" href="/admin">Administrativo</a></li>
+</ul>
+<h1>Login</h1>
+<form method="POST" action="/login">
+    <div class="align">
+        <div>
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+    </div>
+
+    <br>
+    <div class="align2">
+        <button type="submit" class="button button2">Login</button>
+    </div>
+</form>
+</body>
+</html>
